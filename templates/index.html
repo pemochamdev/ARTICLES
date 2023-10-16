@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+
+
+
+<div class="container">
+  <div class="section">
+    <h4>Latest posts</h4>
+    <div class="divider"></div>
+
+
+
+  <div class="row">
+
+    {% for post in posts  %}
+      <div class="col s12 m6">
+        <div class="card">
+          <div class="card-image">
+            <img src="{{post.picture.url}}" width=450px height=350px>
+            <span class="card-title">{{post.title}}</span>
+          </div>
+          <div class="card-content">
+            <p> {{post.content|truncatewords:30}} </p>
+          </div>
+          <div class="card-action">
+            <a href="{% url "detail-post" post.slug %}">Read More..</a>
+          </div>
+        </div>
+      </div>
+    
+    {% endfor %}
+ 
+          
+  </div>
+  </div>
+  </div>
+
+  
+</div>
+
+{% endblock content %}
+
+{% block pagination %}
+
+<ul class="pagination center-align">
+  {% if posts.has_previous %}
+    <a  href="?page={{ posts.previous_page_number }}" class="waves-effect waves-light btn-small"><i class="material-icons left">navigate_before</i>Back</a>
+  {% endif %}
+  {% if posts.has_next %}
+    <a href="?page={{ posts.next_page_number }}" class="waves-effect waves-light btn-small"><i class="material-icons right">navigate_next</i>Next</a>
+  {% endif %}
+</ul>
+
+{% endblock pagination %}

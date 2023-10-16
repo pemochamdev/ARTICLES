@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+
+
+<div id="index-banner" class="parallax-container">
+  <div class="section no-pad-bot">
+    
+  </div>
+  <div class="parallax"><img src=" {{post.picture.url}} " alt="Unsplashed background img 1"></div>
+</div>
+<form action="" method="post" id="favoriteform">
+  {% csrf_token %}
+  <a  href="javascript:void()" class="btn-floating btn-large {% if favorited is True %}blue {% else%} red
+    
+  {% endif %} right tooltipped" data-position="left" data-tooltip="{% if favorited is True %}Remove {% else%} Favorite 
+    
+  {% endif %}" onclick="document.getElementById('favoriteform').submit(); ">
+    <i class="large material-icons ">favorite</i>
+  </a>
+  
+    
+</form>
+ <br>
+      
+
+
+
+<div class="container">
+  <div class="section">
+
+    <!--   Icon Section   -->
+
+    <div class="row">
+      <div class="col s12 m12">
+        <div class="card">
+          
+          <ul class="collection">
+            <li class="collection-item avatar">
+              <i class="material-icons circle">account_circle</i>
+              <span style="font-size: 20px; font-weight: bold;" class="title">Category:  </span>
+              <span  style="font-size: 17px;">{{post.category.title}}</span>
+              <span class="title secondary-content"> {{post.publication_date | date:"l d-M-Y"}} </span>
+              <p>Author: {{post.author}} </p>
+            </li>
+          </ul>
+          <div class="card-panel">
+            <h2 class="header"> {{post.title}} </h2>
+            <p> {{post.content}} </p>
+          </div>
+          <div class="divider"></div>
+        
+          <div class="card-action">
+            <span style="font-size: 20px;" class="title">Tags: </span>
+            {% for tag in post.tags.all  %}
+              <div class="chip"> <a href="{% url 'tag-post' tag.slug %}">{{tag.title}}</a> </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+              
+
+  </div>
+</div>
+
+  
+</div>
+
+
+{% endblock content %}

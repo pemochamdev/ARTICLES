@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+
+  
+<div class="row">
+    <div style="background-color: #ddd;" class="col s12 m12 center-align">
+        <i class="material-icons medium ">label</i>
+        <h5>----Tag-----</h5>
+        {% for tag in tags  %}
+          <h3>{{tag.title}}</h3>
+        {% endfor %}
+    </div>
+</div>
+
+
+
+<div class="container">
+  <div class="section">
+    <h4>Latest posts</h4>
+  <div class="divider"></div>
+
+
+
+<div class="row">
+
+  {% for post in posts  %}
+    <div class="col s12 m6">
+      <div class="card">
+        <div class="card-image">
+          <img src="{{post.picture.url}}" width=450px height=350px>
+          <span class="card-title">{{post.title}}</span>
+        </div>
+        <div class="card-content">
+          <p> {{post.content | truncatewords:20}} </p>
+        </div>
+        <div class="card-action">
+          <a href="{% url "detail-post" post.slug %}">Read More</a>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+        
+</div>
+</div>
+</div>
+
+
+</div>
+
+
+
+{% endblock content %}

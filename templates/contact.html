@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+    <h4>You want to send us message ?</h4>
+    <div class="divider"></div>
+  <div class="row">
+    <form class="col s12" method="post" action="" >
+        {% csrf_token %} 
+      <div class="row">
+        <div class="input-field col s6">
+          {{form.name}}
+          <label for="first_name"> Name</label>
+        </div>
+        <div class="input-field col s6">
+          {{form.email}}
+          <label for="email">Email</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          {{form.message}}
+          <label for="textarea">Message</label>
+        </div>
+      </div>
+      
+     
+        <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+            <i class="material-icons right">send</i>
+        </button>
+            
+    
+    </form>
+  </div>
+        
+
+{% endblock content %}
