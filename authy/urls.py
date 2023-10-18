@@ -7,6 +7,7 @@ urlpatterns = [
     # from authy.views
     path('signup/', views.sign_up, name='sign-up'),
     path('profile/<username>/', views.profile, name='profile'),
+    path('profile/', views.edit_profile, name='edit-profile'),
     path('password-change/', views.PasswordChange, name='password-change'),
     path('password-change/done/', views.PasswordChangeDone, name='password_change_done'),
     

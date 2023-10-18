@@ -16,7 +16,7 @@ def user_directory_path(instance, files):
 
 
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='user_profile')
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
     first_name = models.CharField(max_length=200, null=True, blank=True)
     last_name = models.CharField(max_length=200, null=True, blank=True)
     location = models.CharField(max_length=200, null=True, blank=True)
@@ -34,14 +34,12 @@ class Profile(models.Model):
 
     
 
+def create_user_profile(sender, instance, created, **kwargs):
+	if created:
+		Profile.objects.create(user=instance)
 
-def create_user_profile(instance, sender, created, *args, **kwargs):
-    if created:
-        Profile.objects.create(user=instance)
-
-def save_user_profile(instance, sender, *args, **kwargs):
-    instance.profile.save()
-
+def save_user_profile(sender, instance, **kwargs):
+	instance.profile.save()
 
 post_save.connect(create_user_profile, sender=User)
 post_save.connect(save_user_profile, sender=User)

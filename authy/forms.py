@@ -89,15 +89,16 @@ class ChangePasswordForm(forms.ModelForm):
 
 
 class EditeProfileForm(forms.ModelForm):
-    picture = forms.ImageField(required=True)
-    first_name = forms.CharField(max_length=200, widget=forms.TextInput(), required=True)
-    last_name = forms.CharField(max_length=200, widget=forms.TextInput(), required=True)
-    location = forms.CharField(max_length=200, widget=forms.TextInput(), required=True)
-    url = forms.URLField(max_length=100, widget=forms.URLInput(), required=True)
-    picture_profile = forms.Textarea(max_length=200, widget=forms.TextInput(), required=True)
+    picture = forms.ImageField(required=False)
+    first_name = forms.CharField(max_length=200, widget=forms.TextInput(), required=False)
+    last_name = forms.CharField(max_length=200, widget=forms.TextInput(), required=False)
+    location = forms.CharField(max_length=200, widget=forms.TextInput(), required=False)
+    url = forms.URLField(max_length=100, widget=forms.URLInput(), required=False)
+    profile_info = forms.CharField( widget=forms.TextInput(), max_length=260, required=False)
+    
     
 
     class Meta:
         model = Profile
-        fields = ('picture', 'first_name', 'last_name', 'location', 'url', 'picture_profile')
+        fields = ('picture', 'first_name', 'last_name', 'location', 'url', 'profile_info')
     
