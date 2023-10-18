@@ -1,3 +1,5 @@
+################ Author: https://github.com/pemochamdev #####################
+
 from django.db import models
 from django.urls import reverse
 from django.utils.html import mark_safe

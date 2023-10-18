@@ -1,3 +1,5 @@
+################ Author: https://github.com/pemochamdev #####################
+
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib import messages
@@ -14,9 +16,7 @@ from post.models import Post
 def profile(request, username):
     user = get_object_or_404(User, username=username)
     profile = get_object_or_404(Profile, user=user)
-    posts = profile.favorites.all()
-    
-    
+    posts = profile.favorites.all()        
     #Pagination
     paginator  = Paginator(posts, 2)
     page_number = request.GET.get('page')

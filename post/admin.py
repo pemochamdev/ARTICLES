@@ -1,3 +1,5 @@
+################ Author: https://github.com/pemochamdev #####################
+
 from django.contrib import admin
 
 
